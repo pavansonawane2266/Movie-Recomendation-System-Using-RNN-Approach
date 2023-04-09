@@ -1,0 +1,77 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ title }}</h2>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" name="search" id="search" value="{{ searckkey }}" placeholder="Search movie" class="form-control">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% for movie in movies %}
+        <div class="col-md-3 mb-3">
+            <div class="card shadow">
+                <img class="card-img-top" src="{{ movie.poster.url }}" height="200px" alt="{{ movie.name }}">
+                <div class="card-body">
+                    <table class="w-100">
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>{{ movie.name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Released</strong></td>
+                            <td>{{ movie.released }}</td>
+                        </tr>
+                        <tr>
+                            <td class="pt-2 pb-2" colspan="2">Should you watch?
+                                {% if movie.sentiment != None %}
+                                    {% if movie.sentiment == 1 %}
+                                    <span class="badge bg-success rounded-pill">Yes</span>
+                                    {% endif %}
+                                    {% if movie.sentiment == 0 %}
+                                    <span class="badge bg-danger rounded-pill">No</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="badge bg-dark rounded-pill">Not sure</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% if movie.total_reviews == None %} 
+                        <tr>
+                            <td class="pt-3" colspan="2">
+                                <a href="#" class="btn btn-info btn-block">Reviews <span class="badge badge-pill badge-light">{{ movie.total_reviews }}</span></a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td class="pt-3" colspan="2">
+                                <a href="{% url 'reviews-index' movie.id %}" class="btn btn-info btn-block">Reviews <span class="badge badge-pill badge-light">{{ movie.total_reviews }}</span></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

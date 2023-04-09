@@ -1,0 +1,85 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+		<div class="col-md-12">
+			<h3>{{ title }}</h3>
+		</div>
+	</div>
+
+	<div class="row mt-3">
+		{% if about %}
+		<div class="col-md-8">
+			<h4>About Data</h4>
+			<p>
+                {{ about.about_data }}
+            </p>
+            <a class="text-info" href="{% url 'admin-users' %}">Go Back</a>
+		</div>
+		<div class="col-md-4">
+			<h4>
+				Your personality is classfied as <br>
+				{% if about.personality == 0 %}
+				<span class="text-info"><strong>ENFJ - ENGAGING MOBILIZERS</strong></span>
+				{% endif %}
+				{% if about.personality == 1 %}
+				<span class="text-info"><strong>ENFP - IMPASSIONED CATALYSTS</strong></span>
+				{% endif %}
+				{% if about.personality == 2 %}
+				<span class="text-info"><strong>ENTJ - STRATEGIC DIRECTORS</strong></span>
+				{% endif %}
+				{% if about.personality == 3 %}
+				<span class="text-info"><strong>ENTP - INNOVATIES EXPLORERS</strong></span>
+				{% endif %}
+				{% if about.personality == 4 %}
+				<span class="text-info"><strong>ESFJ - COMMITED BUILDERS</strong></span>
+				{% endif %}
+				{% if about.personality == 5 %}
+				<span class="text-info"><strong>ESFP - ENTHUSIASTIC IMPORVISORS</strong></span>
+				{% endif %}
+				{% if about.personality == 6 %}
+				<span class="text-info"><strong>ESTJ - EFFICIENT DRIVERS</strong></span>
+				{% endif %}
+				{% if about.personality == 7 %}
+				<span class="text-info"><strong>ESTP - DYNAMIC MAVERIKCS</strong></span>
+				{% endif %}
+				{% if about.personality == 8 %}
+				<span class="text-info"><strong>INFJ - INSIGHTFUL MOTIVATORS</strong></span>
+				{% endif %}
+				{% if about.personality == 9 %}
+				<span class="text-info"><strong>INFP - INSPIRED CRUSADERS</strong></span>
+				{% endif %}
+				{% if about.personality == 10 %}
+				<span class="text-info"><strong>INTJ - VISIONARY STRATEGISTS</strong></span>
+				{% endif %}
+				{% if about.personality == 11 %}
+				<span class="text-info"><strong>INTP - EXPANSIVE ANALYZERS</strong></span>
+				{% endif %}
+				{% if about.personality == 12 %}
+				<span class="text-info"><strong>ISFJ - DEDICATED STEWARDS</strong></span>
+				{% endif %}
+				{% if about.personality == 13 %}
+				<span class="text-info"><strong>ISFP - PRACTICAL CUSTODIANS</strong></span>
+				{% endif %}
+				{% if about.personality == 14 %}
+				<span class="text-info"><strong>ISTJ - RESPONSIBLE EXECUTERS</strong></span>
+				{% endif %}
+				{% if about.personality == 15 %}
+				<span class="text-info"><strong>ISTP - NIMBLE PRAGMATICS</strong></span>
+				{% endif %}
+			</h4>
+            <a class="text-danger" href="{% url 'admin-users' %}">Go Back</a>
+		</div>
+		{% else %}
+		<div class="col-md-12">
+			<p>
+				{{ users.name }} haven't wrote something about yourself.<br>
+                <a class="text-info" href="{% url 'admin-users' %}">Go Back</a>
+			</p>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

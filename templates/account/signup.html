@@ -1,0 +1,35 @@
+{% extends 'account/base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        <h3 class="mt-3">{{ title }}</h3>
+        <h5>Apply for on our portal as a user as well as a critic too.</h5>
+        <form action="{% url 'account-signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Create your username" required autocomplete="off" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your fullname" required autocomplete="off" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Create your password" required autocomplete="off" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Signup</button>
+            </div>
+            <div class="form-group">
+                Already have an account? <a href="{% url 'account-login' %}">Login</a>
+            </div>
+            <div class="form-group">
+               <a href="{% url 'index' %}">Go back to home</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ title }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4>New User</h4>
+                    <form action="{% url 'admin-users' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" autocomplete="off" autocapitalize="words" placeholder="Enter user's full name" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" autocomplete="off" placeholder="Create username for user" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Username</label>
+                            <input type="password" name="password" id="password" autocomplete="off" placeholder="Create password for user" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info">Save</button>
+                            <input type="reset" value="Clear" class="btn btn-dark">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h4>Users Datalist</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Personality</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td><a href="{% url 'admin-about-user' user.id %}" class="text-info">Check Personality</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

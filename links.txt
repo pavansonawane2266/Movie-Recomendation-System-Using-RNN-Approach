@@ -1,0 +1,4 @@
+Dataset
+https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+Accuracy on 5000 records is 0.8353333333333334 which is 83%

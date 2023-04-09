@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Movie Recommendation using RNN</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-5 text-info"><a href="{% url 'index' %}">Movie Recommendation using RNN</a></h1>
+            </div>
+        </div>
+
+        <div class="text-center">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success'%}
+                    <div class="text-success">{{message}}</div>
+                    {% elif message.tags == 'error'%}
+                    <div class="text-danger">{{message}}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="container mt-5 text-center">
+        Movie Recommendation using RNN. <br>
+        &copy; Copyrights {% now 'Y'  %} Movie Recommendation using RNN<br>
+        Developed by [Team Members].
+    </footer>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>

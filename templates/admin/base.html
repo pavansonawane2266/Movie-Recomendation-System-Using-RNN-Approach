@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Movie Recommendation using RNN</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1 class="mt-5 text-info"><a href="{% url 'index' %}">Movie Recommendation using RNN - Admin</a></h1>
+
+        <nav class="mt-4">
+            <ul class="list-unstyled d-sm-inline-flex">
+                <li class="mr-2"><a href="{% url 'admin-index' %}" class="btn btn-info">Home</a></li>
+                <li class="mr-2"><a href="{% url 'admin-train-dataset' %}" class="btn btn-info">Train Dataset</a></li>
+                <li class="mr-2"><a href="{% url 'admin-test-dataset' %}" class="btn btn-info">Test Model</a></li>
+                <li class="mr-2"><a href="{% url 'admin-critics' %}" class="btn btn-info">Users</a></li>
+                <li class="mr-2"><a href="{% url 'admin-movies-index' %}" class="btn btn-info">Movies</a></li>
+                <li class="mr-2"><a href="{% url 'account-logout' %}" class="btn btn-danger">Logout</a></li>
+            </ul>
+        </nav>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success'%}
+                <div class="text-success">{{message}}</div>
+                {% elif message.tags == 'error'%}
+                <div class="text-danger">{{message}}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="container mt-5 text-center">
+        Movie Recommendation using RNN<br>
+        &copy; Copyrights {% now 'Y' %}<br>
+        Made by [Team Members].
+    </footer>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>

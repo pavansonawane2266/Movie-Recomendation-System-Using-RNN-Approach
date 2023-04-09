@@ -1,0 +1,35 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ title }}</h2>
+            <a href="{% url 'admin-movies-create' %}" class="btn btn-info">New Movie</a>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        {% for movie in movies %}
+        <div class="col-md-3 mb-3">
+            <div class="card shadow">
+                <img class="card-img-top" src="{{ movie.poster.url }}" height="200px" alt="{{ movie.name }}">
+                <div class="card-body">
+                    <table class="w-100">
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>{{ movie.name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Released</strong></td>
+                            <td>{{ movie.released }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

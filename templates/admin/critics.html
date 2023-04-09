@@ -1,0 +1,53 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ title }}</h2>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for critic in critics %}
+                    <tr>
+                        <td>{{ critic.name }}</td>
+                        <td>
+                            {% if critic.status == 'Active' %}
+                            <span class="text-success">{{ critic.status }}</span>
+                            {% else %}
+                            <span class="text-danger">{{ critic.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if critic.status == 'Active' %}
+                            <form action="{% url 'admin-critics-inactive' critic.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm" type="submit">Inactivate</button>
+                            </form>
+                            {% else %}
+                            <form action="{% url 'admin-critics-active' critic.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-success btn-sm" type="submit">Activate</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
